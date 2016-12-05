@@ -1,0 +1,39 @@
+{
+  "name": "iasa-kpi-ua-new",
+  "version": "0.0.1",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^1.4.2",
+    "cookie": "^0.2.2",
+    "debug": "^2.2.0",
+    "domain": "0.0.1",
+    "fs": "0.0.2",
+    "http": "0.0.0",
+    "mime": "^1.3.4",
+    "mongodb": "^2.0.47",
+    "mongoose": "^4.2.4",
+    "multiparty": "^4.1.2",
+    "path": "^0.12.7",
+    "post-data": "0.0.0",
+    "query-string": "^3.0.0",
+    "requestify": "^0.1.17",
+    "swig": "^1.4.2",
+    "url": "^0.11.0",
+    "urlencode": "^1.1.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iasa-kpi-ua/iasa-kpi-ua-new.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iasa-kpi-ua/iasa-kpi-ua-new/issues"
+  },
+  "homepage": "https://github.com/iasa-kpi-ua/iasa-kpi-ua-new#readme",
+  "description": ""
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+    <script src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script src="/js/check_form4.js"></script>
+
+    <link rel='stylesheet' href="/css/bootstrap.min.css" type='text/css' media='all'>
+    <link rel="stylesheet" href="/css/add.css" type='text/css' media='all'>
+    <link rel="stylesheet" href="/css/general.css" type='text/css' media='all'>
+    <title></title>
+</head>
+
+<body>
+<div class="wrapper container">
+    <!--start_here-->
+    <p>{{mess}}</p>
+    <div class="col-sm-12">
+        <form method="post" class="form_check" role="form" accept-charset="utf-8" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="name">Имя</label>
+                <input  name = "name"class="form-control name-field" id="name">
+                <p class="help-block rfield_error">Заполните поле, пожалуйста</p>
+            </div>
+            <div class="form-group">
+                <label for="surname">Фамилия</label>
+                <input  name = "surname"class="form-control sur-field"id="surname">
+                <p class="help-block rfield_error">Заполните поле, пожалуйста</p>
+            </div>
+            <div class="form-group">
+                <label for="login">Логин</label>
+                <input  name = "login"class="form-control log-field" id="login">
+                <p class="help-block rfield_error">Заполните поле, пожалуйста</p>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input id="password" class="form-control pas-field"name="password"type="password">
+                <p class="help-block rfield_error">Заполните поле, пожалуйста</p>
+            </div>
+            <div class="form-group">
+                <label for="password_chk">Повторите пароль, пожалуйста</label>
+                <input id="password_chk" class="form-control pas2-field"name="password_chk"type="password">
+                <p class="help-block rfield_error">Пароли не совпадают</p>
+            </div>
+            <div class="form-group">
+                <label for="phone">Телефон</label>
+                <input  name = "phone"class="form-control phone-field" id="phone">
+                <p class="help-block rfield_error">Заполните поле корректно, пожалуйста.</p>
+            </div>
+            <div class="form-group">
+                <label for="email">Ваш e-mail</label>
+                <input  name = "email"class="form-control email-field" id="email">
+                <p class="help-block rfield_error">Заполните поле корректно, пожалуйста.</p>
+            </div>
+
+
+            <button type="submit" id="in"class="btn btn-success">Зарегистрироваться</button>
+        </form>
+    </div>
+
+</div>
+<footer></footer>
+
+</body>
+</html>

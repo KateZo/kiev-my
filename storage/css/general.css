@@ -1,0 +1,12 @@
+.hide{
+    display:none;
+}
+.log_box{
+    width:200px;
+    position: absolute;
+    float:right;
+    background-color: white;
+    right:20px; top: 150px;
+    border-radius: 5px;
+    padding: 7px ;
+}

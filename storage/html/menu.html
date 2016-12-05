@@ -1,0 +1,18 @@
+<header><img src="../pictures/up.jpg" id="head"></header>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="{{active[0]}}"><a href="/goods">Товары</a></li>
+                <li class="{{active[1]}}"><a href="/articles">Статьи</a></li>
+                <li class="{{active[2]}}"><a href="/cart">Корзина</a></li>
+                {% if rights === "admin" || rights === "moderator" %}
+                <li class="{{active[3]}}"><a href="/add_g">Админ</a></li>
+                {% endif%}
+            </ul>
+            <a href="/login"><button type="submit" id="log"class="btn btn-primary pull-right" >Войти</button></a>
+            <a href="/register"><button type="submit" id="reg"class="btn btn-default pull-right" >Регистрация</button></a>
+        </div><!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>

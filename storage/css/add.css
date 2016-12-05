@@ -1,0 +1,26 @@
+.col-sm-4{
+    background-color: #5bc0de;
+}
+.wrapper{
+    background-color: white;
+}
+#head{
+    width:100%;
+}
+body{
+    background-color: #e7e7e7;
+}
+.btn-file input[type=file] {
+
+
+}
+.rf_error{
+border-color: #d8512d;
+}
+.rfield_error {
+    visibility: hidden;
+    color: #d8512d;
+}
+.hide{
+    display: none;
+}

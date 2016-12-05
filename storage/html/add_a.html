@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script  src="/js/art.js"> </script>
+    <script  src="/js/check_form2.js"> </script>
+
+    <link rel='stylesheet' href="/css/bootstrap.min.css" type='text/css' media='all'>
+    <link rel="stylesheet" href="/css/add.css" type='text/css' media='all'>
+
+    <title></title>
+</head>
+
+<body>
+<div class="wrapper container">
+    <!--start_here-->
+    <ul class="nav nav-tabs">
+        <li role="presentation"><a href="/add_g">Goods_add</a></li>
+        <li role="presentation" class="active"><a href="/add_a">Articles_add</a></li>
+        <li role="presentation"><a href="/all_art">Articles</a></li>
+        <li role="presentation"><a href="/all_goo">Goods</a></li>
+        {% if rights === "admin" %}
+        <li role="presentation"><a href="/stuff">Stuff</a></li>
+        {% endif%}
+
+        <li role="presentation"><a href="/orders">Orders</a></li>
+    </ul>
+    <h3>{{mess}}</h3>
+    <form method="post" role="form" class ="form_check" id="art"accept-charset="utf-8" enctype="multipart/form-data">
+        <div class="form-group">
+            <input class="hide" name="{{word}}"id="{{word}}" value="{{obj._id}}">
+        </div>
+        <div class="form-group">
+            <label for="name">Название</label>
+            <input  name = "name"class="form-control name-field" id="name" placeholder="Введите название статьи" value="{{obj.name}}">
+            <p class="help-block rfield_error">Заполните поле, пожалуйста</p>
+        </div>
+        <div class="form-group">
+            <label for="text">Основной текст</label>
+            <textarea rows="6"id="text" class="form-control text-field"name="text" placeholder="Введите текст статьи">{{obj.text}}</textarea>
+            <p class="help-block rfield_error">Заполните поле, пожалуйста</p>
+        </div>
+        <div class="form-group">
+            <label for="date">Дата публикации</label>
+            <input  name = "date"class="form-control date-field" id="date" placeholder="Введите дату в формате 2016-01-01"value="{{obj.date}}">
+            <p class="help-block rfield_error">Введите корректные данные</p>
+        </div>
+        <div class="form-group">
+            <label for="author">Автор</label>
+            <input  name = "author"class="form-control aut-field" id="author" placeholder="Введите имя автора"value="{{obj.author}}">
+            <p class="help-block rfield_error">Заполните поле, пожалуйста</p>
+        </div>
+        <div class="form-group">
+            <input type="file" class="{{fileclass}}" name="image" id="image" multiple="multiple" />
+        </div>
+        <button type="submit" class="btn btn-success" >{{word}}</button>
+    </form>
+
+</div>
+<footer></footer>
+
+</body>
+</html>

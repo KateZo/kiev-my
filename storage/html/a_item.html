@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+   <!-- Подключение JS файла Fancybox -->
+    <script src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="fancybox/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("a.fancyimage").fancybox();
+        });
+    </script>
+    <style>
+        .thumb img {
+            filter: none; /* IE6-9 */
+            -webkit-filter: grayscale(0);
+            border-radius:5px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding:5px;
+        }
+
+        .thumb {
+            padding:5px;
+        }
+        #pict{
+            float:left;
+            width:300px;
+            margin:7px;
+        }
+    </style>
+    <link rel='stylesheet' href="/css/bootstrap.min.css" type='text/css' media='all'>
+    <link rel="stylesheet" href="css/jquery.fancybox.css" type="text/css" media="screen" />
+
+    <title></title>
+</head>
+
+<body>
+<div class="wrapper container">
+    <!--start_here-->
+
+    <div class="col-sm-12">
+
+        <h2>{{obj.name}}</h2>
+        <p>{{obj.date}}</p>
+        <p>{{obj.author}}</p>
+        <img src = "{{obj.pictures[0]}}" id="pict">
+        <p >{{obj.text}}</p>
+    </div>
+    <div class="row">
+        {% for p in obj.pictures %}
+        <div class="col-md-3 col-sm-4 col-xs-6 thumb">
+            <a class="fancyimage" data-fancybox-group="group" href="{{p}}">
+                <img class="img-responsive" src="{{p}}" />
+            </a>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+<footer></footer>
+
+</body>
+</html>

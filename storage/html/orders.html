@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+
+    <link rel='stylesheet' href="/css/bootstrap.min.css" type='text/css' media='all'>
+
+    <title></title>
+</head>
+
+<body>
+<div class="wrapper container">
+    <header><img src="../pictures/up.jpg" id="head"></header>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="{{active[0]}}"><a href="/goods">Товары</a></li>
+                    <li class="{{active[1]}}"><a href="/articles">Статьи</a></li>
+                    <li class="{{active[2]}}"><a href="/cart">Корзина</a></li>
+                    {% if rights === "admin" || rights === "moderator" %}
+                    <li class="{{active[3]}}"><a href="/add_g">Админ</a></li>
+                    {% endif%}
+                </ul>
+                <a href="/login"><button type="submit" id="log"class="btn btn-primary pull-right" >Войти</button></a>
+                <a href="/register"><button type="submit" id="reg"class="btn btn-default pull-right" >Регистрация</button></a>
+            </div><!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <ul class="nav nav-tabs">
+        <li role="presentation"><a href="/add_g">Goods_add</a></li>
+        <li role="presentation"><a href="/add_a">Articles_add</a></li>
+        <li role="presentation"><a href="/all_art">Articles</a></li>
+        <li role="presentation"><a href="/all_goo">Goods</a></li>
+        {% if rights === "admin" %}
+            <li role="presentation"><a href="/stuff">Stuff</a></li>
+        {% endif%}
+
+        <li role="presentation" class="active"><a href="/orders">Orders</a></li>
+    </ul>
+    <div class = "col-sm-12" >
+        <div class="my_drop">
+            <div class="dropdown" id="sort_d">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Выбрать<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="orders?sort=order">Активные заказы</a></li>
+                    <li><a href="orders?sort=archive">Архив</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Заказ</th>
+            <th>Имя, фамилия покупателя</th>
+            <th>Номер</th>
+            <th>Сумма</th>
+            {% if sort === "архив" %}
+                <th>Имя продавца</th>
+            {% endif %}
+            <th>Дата</th>
+            {% if sort === "заказ" %}
+                <th>Подтвердить</th>
+            {% endif %}
+            <th>Удалить</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for x in orders%}
+        <tr>
+            <td>{% for c in x.order%}<p>{{c.name}}</p>{% endfor %}</td>
+            <td>{{x.consumer.name}}</td>
+            <td>{{x.consumer.phone}}</td>
+
+            <td>{{x.summa}}</td>
+            {% if x.status === "архив" %}
+                <td>{{x.seller}}</td>
+            {% endif %}
+            <td>{{x.date}}</td>
+            {% if x.status === "заказ" %}
+                <td><a href="/orders?archive={{x._id}}"><button type="button" class="btn btn-success">Продано</button></a></td>
+            {% endif%}
+            <td><a href="/orders?delete={{x._id}}"><button type="button" class="btn btn-danger">Удалить</button></a></td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    <div class = "col-sm-12">
+        <ul class="pagination">
+            <li><a href="orders?page=1&sort={{sort}}">&laquo;</a></li>
+
+            <li class="{{c[0]}}"><a href="orders?page={{current_pages[0]}}&sort={{sort}}">{{current_pages[0]}}</a></li>
+            <li class="{{c[1]}}"><a href="orders?page={{current_pages[1]}}&sort={{sort}}">{{current_pages[1]}}</a></li>
+            <li class="{{c[2]}}"><a  href="orders?page={{current_pages[2]}}&sort={{sort}}">{{current_pages[2]}}</a></li>
+            <li class="{{c[3]}}"><a href="orders?page={{current_pages[3]}}&sort={{sort}}">{{current_pages[3]}}</a></li>
+            <li class="{{c[4]}}"><a href="orders?page={{current_pages[4]}}&sort={{sort}}">{{current_pages[4]}}</a></li>
+
+            <li><a href="orders?page={{total_pages}}&sort={{sort}}">&raquo;</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

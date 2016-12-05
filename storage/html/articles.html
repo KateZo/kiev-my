@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+
+    <link rel="stylesheet" href="/css/articles.css" type='text/css' media='all'>
+    <link rel='stylesheet' href="/css/bootstrap.min.css" type='text/css' media='all'>
+    <link rel='stylesheet' href="/css/bootstrap-theme.min.css" type='text/css' media='all'>
+    <link rel='stylesheet' href="/css/bootstrap.css" type='text/css' media='all'>
+
+
+    <title></title>
+</head>
+<body>
+<div class="wrapper container">
+    <header><img src="../pictures/up.jpg" id="head"></header>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="{{active[0]}}"><a href="/goods">Товары</a></li>
+                    <li class="{{active[1]}}"><a href="/articles">Статьи</a></li>
+                    <li class="{{active[2]}}"><a href="/cart">Корзина</a></li>
+                    {% if rights === "admin" || rights === "moderator" %}
+                    <li class="{{active[3]}}"><a href="/add_g">Админ</a></li>
+                    {% endif%}
+                </ul>
+                <a href="/login"><button type="submit" id="log"class="btn btn-primary pull-right" >Войти</button></a>
+                <a href="/register"><button type="submit" id="reg"class="btn btn-default pull-right" >Регистрация</button></a>
+            </div><!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+
+    <div class = "col-sm-12" >
+        <div class="my_drop">
+            <div class="dropdown" id="sort_d">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Сортировать<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="articles?sort=az&search={{search}}">А-Я</a></li>
+                    <li><a href="articles?sort=za&search={{search}}">Я-А</a></li>
+                    <li><a href="articles?sort=a_az&search={{search}}">автор А-Я</a></li>
+                    <li><a href="articles?sort=a_za&search={{search}}">автор Я-А</a></li>
+                    <li><a href="articles?sort=new&search={{search}}">от новых к старым</a></li>
+                    <li><a href="articles?sort=old&search={{search}}">от старых к новым</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <form method="post"class="navbar-form navbar-right" role="search" id="search">
+            <div class="form-group">
+                <input name = "search"type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Поиск</button>
+        </form>
+    </div>
+    {% for x in xxx%}
+        <div class = "col-sm-12">
+            <div class="top">
+                <div class="name inline">
+                    <h1><a href="a_item?id={{x._id}}">{{x.name}}</a></h1>
+                </div>
+                <div class="info inline">
+                    <p>{{x.date}}</p>
+                    <p>{{x.author}}</p>
+                </div>
+            </div>
+            <div class="divider">
+
+            </div>
+            <div class="midlle">
+                {{x.preview}}
+            </div>
+        </div>
+    {% endfor %}
+    <div class = "col-sm-12">
+    <ul class="pagination">
+        <li><a href="articles?page=1&sort={{sort}}&search={{search}}">&laquo;</a></li>
+
+        <li class="{{c[0]}}"><a href="articles?page={{current_pages[0]}}&sort={{sort}}&search={{search}}">{{current_pages[0]}}</a></li>
+        <li class="{{c[1]}}"><a href="articles?page={{current_pages[1]}}&sort={{sort}}&search={{search}}">{{current_pages[1]}}</a></li>
+        <li class="{{c[2]}}"><a  href="articles?page={{current_pages[2]}}&sort={{sort}}&search={{search}}">{{current_pages[2]}}</a></li>
+        <li class="{{c[3]}}"><a href="articles?page={{current_pages[3]}}&sort={{sort}}&search={{search}}">{{current_pages[3]}}</a></li>
+        <li class="{{c[4]}}"><a href="articles?page={{current_pages[4]}}&sort={{sort}}&search={{search}}">{{current_pages[4]}}</a></li>
+
+        <li><a href="articles?page={{total_pages}}&sort={{sort}}&search={{search}}">&raquo;</a></li>
+    </ul>
+    </div>
+</div>
+
+<footer></footer>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+.hide{
+    display: none;
+}
+.inline{
+    display:inline-block;
+}
+.name{
+    width:70%;
+
+
+}
+.name h1 a{
+    text-decoration: none;
+    color: #262626;
+}
+.info{
+    width:28%;
+
+    text-align: right;
+    line-height: 10px;
+}
+.divider{
+    background-color: #aaaaaa;
+    height:2px;
+
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+
+    <script  src="/js/check_form.js"> </script>
+    <script  src="/js/login.js"> </script>
+
+    <link rel='stylesheet' href="/css/bootstrap.min.css" type='text/css' media='all'>
+    <link rel="stylesheet" href="/css/add.css" type='text/css' media='all'>
+    <link rel="stylesheet" href="/css/general.css" type='text/css' media='all'>
+
+    <title></title>
+</head>
+
+<body>
+    <div class="wrapper container">
+        <!--start_here-->
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="/add_g">Goods_add</a></li>
+            <li role="presentation"><a href="/add_a">Articles_add</a></li>
+            <li role="presentation"><a href="/all_art">Articles</a></li>
+            <li role="presentation"><a href="/all_goo">Goods</a></li>
+            {% if rights === "admin" %}
+            <li role="presentation"><a href="/stuff">Stuff</a></li>
+            {% endif%}
+
+            <li role="presentation"><a href="/orders">Orders</a></li>
+        </ul>
+        <div class="heading"></div>
+        <h4>{{mess}}</h4>
+        <form method="post" role="form" id="goods"class = "form_check"accept-charset="utf-8" enctype="multipart/form-data">
+            <div class="form-group">
+                <input class="hide" name="{{word}}"id="{{word}}" value="{{obj._id}}">
+            </div>
+            <div class="form-group">
+                <label for="name">Название</label>
+                <input  name = "name"class="form-control name-field" id="name" placeholder="Введите название объекта" value="{{obj.name}}">
+                <p class="help-block rfield_error">Заполните поле, пожалуйста</p>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Описание</label>
+                <textarea id="description" class="form-control desc-field"name="description" placeholder="Введите описание">{{obj.description}}</textarea>
+                <p class="help-block rfield_error">Заполните поле, пожалуйста</p>
+            </div>
+            <div class="form-group">
+                <label for="rate">Рейтинг</label>
+                <input  name = "rate"class="form-control rate-field" id="rate" placeholder="Введите рейтинг от 0 до 5 с шагом 0,5" value="{{obj.rate}}">
+                <p class="help-block rfield_error">Заполните поле, пожалуйста. Это числовое поле</p>
+            </div>
+            <div class="form-group">
+                <label for="geo_x">x координата</label>
+                <input  name = "geo_x"class="form-control geo-field" id="geo_x" placeholder="Введите координату х: 50.4456"value="{{obj.geo_x}}">
+                <p class="help-block rfield_error">Заполните поле, пожалуйста. Пример:  50.445666</p>
+            </div>
+            <div class="form-group">
+                <label for="geo_y">y координата</label>
+                <input  name = "geo_y"class="form-control geo-field" id="geo_y" placeholder="Введите координату у: 50.445666"value="{{obj.geo_y}}">
+                <p class="help-block rfield_error">Заполните поле, пожалуйста. Пример:  50.445666</p>
+            </div>
+            <div class="form-group">
+                <input type="file" class="{{fileclass}}"name="image" id="image" multiple="multiple" />
+            </div>
+            <button type="submit" class="btn btn-success" >{{word}}</button>
+        </form>
+
+    </div>
+    <footer></footer>
+
+</body>
+</html>

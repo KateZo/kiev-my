@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/edit_g.js"  type="text/javascript"></script>
+
+    <link rel='stylesheet' href="/css/bootstrap.min.css" type='text/css' media='all'>
+
+    <title></title>
+</head>
+
+<body>
+<div class="wrapper container">
+    <header><img src="../pictures/up.jpg" id="head"></header>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="{{active[0]}}"><a href="/goods">Товары</a></li>
+                    <li class="{{active[1]}}"><a href="/articles">Статьи</a></li>
+                    <li class="{{active[2]}}"><a href="/cart">Корзина</a></li>
+                    {% if rights === "admin" || rights === "moderator" %}
+                    <li class="{{active[3]}}"><a href="/add_g">Админ</a></li>
+                    {% endif%}
+                </ul>
+                <a href="/login"><button type="submit" id="log"class="btn btn-primary pull-right" >Войти</button></a>
+                <a href="/register"><button type="submit" id="reg"class="btn btn-default pull-right" >Регистрация</button></a>
+            </div><!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <ul class="nav nav-tabs">
+        <li role="presentation"><a href="/add_g">Goods_add</a></li>
+        <li role="presentation"><a href="/add_a">Articles_add</a></li>
+        <li role="presentation"><a href="/all_art">Articles</a></li>
+        <li role="presentation" class="active"><a href="/all_goo">Goods</a></li>
+        {% if rights === "admin" %}
+        <li role="presentation"><a href="/stuff">Stuff</a></li>
+        {% endif%}
+
+        <li role="presentation" ><a href="/orders">Orders</a></li>
+    </ul>
+    <div class = "col-sm-12" >
+
+        <div class="my_drop">
+            <div class="dropdown" id="sort_d">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Сортировать<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="all_goo?sort=az">А-Я</a></li>
+                    <li><a href="all_goo?sort=za">Я-А</a></li>
+                    <li><a href="all_goo?sort=low">от дешевых к дорогим</a></li>
+                    <li><a href="all_goo?sort=high">от дорогих к дешевым</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!--<div class="form-group">
+            <select class="form-control" id="sel1">
+                <option><a href="all_goo?sort=az">А-Я</a></option>
+                <option href="all_goo?sort=za"><a href="all_goo?sort=za">Я-А</a></option>
+                <option><a href="all_goo?sort=low">от дешевых к дорогим</a></option>
+                <option><a href="all_goo?sort=high">от дорогих к дешевым</a></option>
+            </select>
+        </div><form class="navbar-form navbar-right" role="search" id="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Поиск</button>
+        </form>-->
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Наименование</th>
+            <th>Описание</th>
+            <th>Цена</th>
+            <th>Количество</th>
+            <th>Пути к картинкам</th>
+            <th>Ред.</th>
+            <th>Удалить</th>
+        </tr>
+        </thead>
+        {{x._id}}
+        <tbody>
+        {% for x in xxx%}
+            <tr>
+                <td class="nedd">{{x.name}}</td>
+                <td>{{x.description}}</td>
+                <td>{{x.price}}</td>
+                <td>{{x.amount}}</td>
+                <td>{% for p in x.pictures%}<p>{{p}}</p>{% endfor %}</td>
+                <td><a href="/add_g?id={{x._id}}&action='red'"> <button><span class="glyphicon glyphicon-pencil"></span></button></a></td>
+                <td><a href="/add_g?id={{x._id}}&action='delete'"> <button><span class="glyphicon glyphicon-trash"></span></button></a></td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    <div class = "col-sm-12">
+        <ul class="pagination">
+            <li><a href="all_goo?page=1&sort={{sort}}">&laquo;</a></li>
+
+            <li class="{{c[0]}}"><a href="all_goo?page={{current_pages[0]}}&sort={{sort}}">{{current_pages[0]}}</a></li>
+            <li class="{{c[1]}}"><a href="all_goo?page={{current_pages[1]}}&sort={{sort}}">{{current_pages[1]}}</a></li>
+            <li class="{{c[2]}}"><a  href="all_goo?page={{current_pages[2]}}&sort={{sort}}">{{current_pages[2]}}</a></li>
+            <li class="{{c[3]}}"><a href="all_goo?page={{current_pages[3]}}&sort={{sort}}">{{current_pages[3]}}</a></li>
+            <li class="{{c[4]}}"><a href="all_goo?page={{current_pages[4]}}&sort={{sort}}">{{current_pages[4]}}</a></li>
+
+            <li><a href="all_goo?page={{total_pages}}&sort={{sort}}">&raquo;</a></li>
+        </ul>
+    </div>
+
+
+</div>
+<footer></footer>
+
+</body>
+</html>
