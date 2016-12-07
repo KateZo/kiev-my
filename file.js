@@ -1,11 +1,11 @@
 /**
- * Created by Екатерина on 26.12.2015.
+ * Created by пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ on 26.12.2015.
  */
 var fs = require('fs');
 var mime = require('mime');
-var typeOf = require('use').typeOf;
+var typeOf = require('./use').typeOf;
 var swig = require('swig');
-var visitor = require('temp').visitor;
+var visitor = require('./temp').visitor;
 
     exports.file = function(path,request,response){//module.
         fs.exists(path, function(exists){
@@ -24,7 +24,7 @@ var visitor = require('temp').visitor;
             }
             else errorBack(response, 404);
         });
-    }
+    };
 var errorBack = function(response, code){
     response.writeHead(code, { 'Content-Type': 'text/plain' });
     response.end('Not found.');
@@ -63,7 +63,7 @@ exports.view = function(path,query,res){
                     var buffer = new Buffer(buf10+out2+buf11);
                     res.writeHead(200, {
                         'Content-Length': buffer.length,
-                        'Content-Type': 'text/html',
+                        'Content-Type': 'text/html'
 
                     });
                     res.write(buffer);
@@ -72,4 +72,4 @@ exports.view = function(path,query,res){
             });
         }
     });
-}
+};

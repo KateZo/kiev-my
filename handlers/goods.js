@@ -4,28 +4,31 @@
 exports.url = "/goods";
 
 var swig = require('swig');
-var db = require('../mongo').db;
+//var db = require('../mongo').db;
 var db2 = require('../mongo').db2;
 var url = require('url');
-var formidable = require('formidable');
+//var formidable = require('formidable');
 var file = require('../file');
 var visitor = require('../temp').visitor;
 var bson = require('bson');
+
+
 exports.run = function(request,response){
     try {
         console.log("Request handler 'goods' was called.");
         //console.log(visitor);
-        var buy_enable = "disabled";
-        if (visitor.name != "")
-            buy_enable = "";
+        //var buy_enable = "disabled";
+        //if (visitor.name != "")
+        //    buy_enable = "";
         var search = "";
         if (url.parse(request.url, true).query['search']) {
             search = (url.parse(request.url, true).query['search']).toString();
         }
-        ;
-        var pf = Number(url.parse(request.url, true).query['pf'])//границы цен из запроса
-        var pt = Number(url.parse(request.url, true).query['pt'])
+
         var page = Number(url.parse(request.url, true).query['page']);//текущая страница
+        /*var pf = Number(url.parse(request.url, true).query['pf'])//границы цен из запроса
+        var pt = Number(url.parse(request.url, true).query['pt'])
+
         var say = "";
         var form = new formidable.IncomingForm();
         form.parse(request, function (err, fields, files) {
@@ -48,7 +51,7 @@ exports.run = function(request,response){
                 //console.log("Get buy ^^");
                 db.open(function (error, database) {
 
-                    var collection = database.collection("goods");
+                    var collection = database.collection("tour_dot");
                     id = new bson.ObjectID(nam);
                     var goods = collection.find({"_id": id});
                     goods.forEach(function (doc_am) {
@@ -89,7 +92,7 @@ exports.run = function(request,response){
 
             }
         });
-
+        */
         var lim = 9;//кол-во записей на стр.
 
         var sort = {name: 1};
@@ -115,9 +118,10 @@ exports.run = function(request,response){
         }
 
         //console.log(price);
-        if ((price['from'] < 0) || (price['to'] < 0) || (price['to'] <= price['from']))//допустимая ли форма
+        /*if ((price['from'] < 0) || (price['to'] < 0) || (price['to'] <= price['from']))//допустимая ли форма
             price = {from: 0, to: max_price};
-        var goods_arr = [];//массив э-тов на одной стр
+        */
+        var tour_dot_arr = [];//массив э-тов на одной стр
         var cp = [1, 2, 3, 4, 5];//массив страниц для скрола
         var c = [];//массив классов для скрола
         for (var i = 0; i < 5; i++)
@@ -135,31 +139,31 @@ exports.run = function(request,response){
         db2.open(function (err, db) {
             console.log(err);
 
-            var collection = db.collection("goods");//коллекция где хранятся товары
+            var collection = db.collection("tour_dot");//коллекция где хранятся товары
             var tp = 20;//кол-во записей(по "умолчанию" 20 поставила)
             var ost = 0;
 
-            if ((pf) || (pt)) {//если не в форме пришли, а в запросе
+            /*if ((pf) || (pt)) {//если не в форме пришли, а в запросе
                 price['from'] = pf;
                 price['to'] = pt;
-            }
+            }*/
             //console.log("pf: "+pf+" pt: "+pt);
             var reg_search = new RegExp(search, "i");
             console.log("Search: " + search + " reg: " + reg_search);
             var q;
             if (search != "") {
                 q = {$or: [{"name": {$regex: reg_search}}, {"description": {$regex: reg_search}}]};
-            } else {
+            } /*else {
                 q = {"price": {$gt: price['from'] - 1, $lt: price['to'] + 1}};
-            }
-            var goods = collection.find(q);
-            goods.count(function (erro, count) {
+            }*/
+            var tour_dot = collection.find(q);
+            tour_dot.count(function (erro, count) {
                 console.log(erro);
                 //console.log(count);
                 if (count == 0) {
                     file.view("html/default.html", {mess: "Нет данных, отвечающих запросу..."}, response)
                 } else {
-                    goods.sort(sort)
+                    tour_dot.sort(sort)
                         .skip(lim * (page - 1))
                         .limit(lim);//на странице lim записи, берем пачку из базы
 
@@ -199,25 +203,25 @@ exports.run = function(request,response){
                     }
                     for (var i = 0; i < 5; i++)
                         if ((cp[i] < 1) || (cp[i] > tp))
-                            c[i] = "hide"
+                            c[i] = "hide";
                     console.log(cp);
 
 
                     var k = 1;
-                    goods.forEach(function (doc) {
+                    tour_dot.forEach(function (doc) {
 
                         doc._id = doc._id.toString();//чтобы передать запросом сщ страницы
-                        goods_arr.push(doc);
+                        tour_dot_arr.push(doc);
 
                         m.renderFile("html/goods.html", {
-                            xxx: goods_arr,
+                            xxx: tour_dot_arr,
                             total_pages: tp,
                             current_pages: cp,
                             c: c,
                             sort: sorting,
-                            from: price['from'],
-                            to: price['to'],
-                            buy: buy_enable,
+                            //from: price['from'],
+                            //to: price['to'],
+                            //buy: buy_enable,
                             rights: visitor.rights,
                             active: ["active", "", "", ""],
                             search: search

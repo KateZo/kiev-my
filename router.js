@@ -1,5 +1,5 @@
 /**
- * Created by Екатерина on 15.12.2015.
+ * Created by пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ on 15.12.2015.
  */
 var handlers = require("./handlers");
 var form_handlers = require("./form_handlers");
@@ -8,11 +8,11 @@ var form_handlers = require("./form_handlers");
 function route(pathname,request,respond){
 
      if (pathname.search(/^.*[\.](?:css|js|jpe?g|gif|woff|map|woff2|png|ico)$/i) != -1){
-
+        console.log("pathname = "+pathname);
         handlers['/storage'](request,respond,pathname);
     }else {
-        //регулярка, проверить хэндлер на совпад(обрезаю пейдж)
-console.log("I get request from"+pathname);
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)
+        console.log("I get request from"+pathname);
         if ((request.method.toLowerCase()=='get')&&(typeof handlers[pathname] == 'function')) {
             console.log("It's get request");
             handlers[pathname](request, respond);

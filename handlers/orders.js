@@ -8,7 +8,7 @@ var db = require('../mongo').db;
 //var db2 = require('../mongo').db2;
 //var url = require('url');
 //var formidable = require('formidable');
-var file = require('file');
+var file = require('../file');
 var visitor = require('../temp').visitor;
 var bson = require('bson');
 exports.run = function(request,response) {
@@ -66,7 +66,7 @@ exports.run = function(request,response) {
                 var order = collection.remove({_id: id});
                 db.close();
                 file.view("html/default.html", {mess: "Удалено"}, response);
-            };
+            }
         }else {
             var orders = collection
                 .find({status: status});
@@ -115,7 +115,7 @@ exports.run = function(request,response) {
                     }
                     for (var i = 0; i < 5; i++)
                         if ((cp[i] < 1) || (cp[i] > tp))
-                            c[i] = "hide"
+                            c[i] = "hide";
                     //console.log(cp);
 
 

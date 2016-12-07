@@ -1,9 +1,0 @@
-{
-	"encoding": "utf8",
-	"maxFieldsSize": 16777216,
-	"maxFields": 1000,
-	"maxFilesSize": "Infinity",
-	"autoFields": true,
-	"autoFiles": true,
-	"uploadDir": "tmp"
-}

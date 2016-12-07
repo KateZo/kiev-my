@@ -3,19 +3,15 @@
 <head>
     <meta http-equiv="content-type" content="text/html" charset="UTF-8">
     <script src="/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/bootstrap.js"></script>
-
     <script src="/js/goods.js"></script>
-
-
     <link rel='stylesheet' href="/css/bootstrap.min.css" type='text/css' media='all'>
     <link rel="stylesheet" href="/css/goods.css" type='text/css' media='all'>
-
+    <script type="text/javascript" src="/js/bootstrap.js"></script>
     <title></title>
 </head>
 <body>
 <div class="wrapper container">
-    <header><img src="../pictures/up.jpg" id="head"></header>
+    <header></header>
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -34,7 +30,7 @@
         <!-- /.container-fluid -->
     </nav>
 
-        <div class="col-sm-4">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
             <div class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="sort">Сортировать<b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -46,7 +42,7 @@
             </div>
         </div>
 
-
+<!--
         <div class="sort col-sm-4">
             <form method="post" class="inline"role="form" id="price"accept-charset="utf-8" enctype="multipart/form-data">
                     <label for="from"class="inline">Цена</label>
@@ -55,8 +51,8 @@
                     <input  name = "to"class="form-control inline" id="to" placeholder="300">
                     <button type="submit" class="btn btn-success" >Да</button>
             </form>
-        </div>
-        <div class="sort col-sm-4">
+        </div>-->
+        <div class="sort col-xs-6 col-sm-6 col-md-6 col-lg-6">
             <form method = "post"class="navbar-form navbar-right inline" role="search" id="search">
                 <div class="form-group">
                     <input type="text" name="search"class="form-control" placeholder="Search">
@@ -67,25 +63,27 @@
 
 
     {% for x in xxx%}
-        <div class = "col-md-3 col-sm-4 col-xs-6 good">
-            <div class="grow">
-                <p><a href="g_item?id={{x._id}}"><img  src = "{{x.pictures[0]}}"></a></p>
+        <div class = "col-md-3 col-sm-4 col-xs-12 good">
+            <div class="up col-xs-6 col-sm-12 col-md-12 col-lg-12">
+                <img  src = "{{x.pictures[0]}}">
+                <!--
+                <a href="g_item?id={{x._id}}"><img  src = "{{x.pictures[0]}}"></a>
+                -->
             </div>
-            <div class="midlle">
+            <div class="down col-xs-6 col-sm-12 col-md-12 col-lg-12">
                 <a class="name" href="g_item?id={{x._id}}">{{x.name}}</a>
-            </div><!--<p class="description">{{x.description}}</p>-->
-            <div class="down">
-                <p class="price">{{x.price}} UAH</p>
+
+                <!--<p class="price">{{x.price}} UAH</p>
                 <form method="post" class="inline"role="form"accept-charset="utf-8" enctype="multipart/form-data">
                     <p class="inline kol">Кол-во</p>
                     <input  name = "{{x._id}}"id = "{{x._id}}"class="form-control inline kol" placeholder="кол-во" value="1">
                     <button type = "submit"class="btn inline {{buy}}">Купить</button>
-                </form>
+                </form>-->
                 <p class="{{hide}}">{{say}}</p>
             </div>
         </div>
     {% endfor %}
-    <div class = "col-sm-12">
+    <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <ul class="pagination">
         <li><a href="goods?page=1&sort={{sort}}&pf={{from}}&pt={{to}}&search={{search}}">&laquo;</a></li>
 

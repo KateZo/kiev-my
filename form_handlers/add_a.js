@@ -1,7 +1,7 @@
 /**
  * Created by Екатерина on 18.12.2015.
  */
-exports.url = "/add_a";
+/*exports.url = "/add_a";
 var fs = require('fs');
 var db = require('../mongo').db;
 var db1 = require('../mongo').db2;
@@ -12,19 +12,16 @@ exports.run = function(req,res){
 
     var mess = 'Успешно добавлено';
     var files_present = false;
-    //var img = 0;//инициализация имг на всякий пожарный
+    var img = 0;//инициализация имг на всякий пожарный
     //var today = new Date();
     var action="";// изменить или удалить
     db.open(function(err,datab){
-        var collection_img = datab.collection("img_a");
-        var imag = collection_img.find();
-
-        imag.forEach(function(doc){
-            img=Number(doc.image);//извлекаем номер картники
-            datab.close();
-
-            var images = [];//пути к картинкам
-            var fields = {name:"",text:"",date:"",status:"",author:""};
+        var collection = datab.collection("tours");
+        var imag = collection.findOne();
+        img = imag.image_count;
+        console.log("Image: "+img);
+        var images = [];//пути к картинкам
+        var fields = {name:"",text:"",date:"",status:"",author:""};
             var form = new formidable.IncomingForm();
             form.uploadDir = "./storage/pictures_articles/";
 
@@ -119,3 +116,4 @@ exports.run = function(req,res){
 };
 
 
+*/
