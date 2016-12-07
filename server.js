@@ -7,10 +7,7 @@ var file = require('./file');
 
 function run(route){
     function onRequest(request,response){
-        if (request.url=='/'){
-            file.view("html/login.html",{},response);
-            console.log("First if");
-        }
+
             var pathname = url.parse(request.url);
         console.log("I get request from"+pathname.pathname);
             pathname = pathname.pathname;

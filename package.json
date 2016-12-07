@@ -1,12 +1,12 @@
 {
-  "name": "iasa-kpi-ua-new",
+  "name": "kate-app",
   "version": "0.0.1",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
+  "license": "",
   "dependencies": {
     "async": "^1.4.2",
     "cookie": "^0.2.2",
@@ -27,13 +27,5 @@
     "urlencode": "^1.1.0"
   },
   "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/iasa-kpi-ua/iasa-kpi-ua-new.git"
-  },
-  "bugs": {
-    "url": "https://github.com/iasa-kpi-ua/iasa-kpi-ua-new/issues"
-  },
-  "homepage": "https://github.com/iasa-kpi-ua/iasa-kpi-ua-new#readme",
   "description": ""
 }

@@ -6,7 +6,10 @@ var form_handlers = require("./form_handlers");
 
 
 function route(pathname,request,respond){
-
+    if (pathname=='/'){
+        file.view("html/login.html",{},response);
+        console.log("First if");
+    }
      if (pathname.search(/^.*[\.](?:css|js|jpe?g|gif|woff|map|woff2|png|ico)$/i) != -1){
         console.log("pathname = "+pathname);
         handlers['/storage'](request,respond,pathname);
